@@ -1,0 +1,30 @@
+<div class="container">
+  <header class="jumbotron">
+    <div class="list row">
+      @if (isLoggedIn) {
+        <div class="col-md-6">
+          <h4>Lessons List</h4>
+          <ul class="list-group">
+            @for (lesson of lessons; track lesson.id; let i = $index) {
+            <li
+              class="list-group-item"
+              [class.active]="i == currentIndex"
+              (click)="setActiveLesson(lesson, i)"
+            >
+              {{ lesson.topic }}
+            </li>
+            }
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <app-lesson-details
+            [viewMode]="true"
+            [currentLesson]="currentLesson"
+          ></app-lesson-details>
+        </div>
+      } @else {
+        <div class="col-md-12"><h4>User not logged.</h4></div>
+      }
+    </div>
+  </header>
+</div>
